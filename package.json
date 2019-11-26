@@ -2,7 +2,7 @@
   "name": "frontend-project-lvl2",
   "version": "1.0.0",
   "description": "Compares two configuration files and shows a difference.",
-  "main": "dist",
+  "main": "index.js",
   "bin": {
     "gendiff": "dist/bin/gendiff.js"
   },
@@ -36,6 +36,7 @@
     "eslint-plugin-import": "^2.18.2"
   },
   "dependencies": {
-    "commander": "^4.0.1"
+    "commander": "^4.0.1",
+    "lodash": "^4.17.15"
   }
 }
