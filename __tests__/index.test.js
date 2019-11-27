@@ -1,4 +1,3 @@
-import fs from 'fs';
 import genDiff from '../src';
 
 const before = `${__dirname}/__fixtures__/before.json`;
@@ -10,7 +9,7 @@ host: hexlet.io
 - proxy: 123.234.53.22
 - follow: false
 + verbose: true
-}`
+}`;
 
 test('compare flat JSON', () => {
   expect(genDiff(before, after)).toEqual(result);

@@ -3,6 +3,7 @@ plugins:
   - jest
   # https://github.com/babel/eslint-plugin-babel
   - babel
+
 env:
   node: true
   jest: true
@@ -12,8 +13,7 @@ parser: babel-eslint
 extends:
   - 'airbnb-base'
   - 'plugin:jest/recommended'
+
 rules:
   no-console: 0
 
-jest:
-  true
