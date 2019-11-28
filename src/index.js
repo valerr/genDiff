@@ -1,22 +1,20 @@
-import fs from 'fs';
 import _ from 'lodash';
+import parse from './parsers';
 
 export default (config1, config2) => {
-  const file1 = fs.readFileSync(config1, 'utf8');
-  const file2 = fs.readFileSync(config2, 'utf8');
-  const json1 = JSON.parse(file1);
-  const json2 = JSON.parse(file2);
+  const file1 = parse(config1);
+  const file2 = parse(config2);
 
-  const allKeyes = _.union(Object.keys(json1), Object.keys(json2));
+  const allKeys = _.union(Object.keys(file1), Object.keys(file2));
 
-  const result = allKeyes.reduce((acc, key) => {
-    if (_.has(json1, key) && _.has(json2, key)) {
-      return json1[key] === json2[key] ? [...acc, `${key}: ${json1[key]}`] : [...acc, `- ${key}: ${json1[key]}`, `+ ${key}: ${json2[key]}`];
+  const result = allKeys.reduce((acc, key) => {
+    if (_.has(file1, key) && _.has(file2, key)) {
+      return file1[key] === file2[key] ? [...acc, `    ${key}: ${file1[key]}`] : [...acc, `  - ${key}: ${file1[key]}`, `  + ${key}: ${file2[key]}`];
     }
-    if (_.has(json1, key) && !_.has(json2, key)) {
-      return [...acc, `- ${key}: ${json1[key]}`];
+    if (_.has(file1, key) && !_.has(file2, key)) {
+      return [...acc, `  - ${key}: ${file1[key]}`];
     }
-    return [...acc, `+ ${key}: ${json2[key]}`];
+    return [...acc, `  + ${key}: ${file2[key]}`];
   }, []);
   return `{\n${result.join('\n')}\n}`;
 };
