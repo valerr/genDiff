@@ -1,10 +1,12 @@
 import yaml from 'js-yaml';
 import path from 'path';
 import fs from 'fs';
+import ini from 'ini';
 
 const parsers = {
   '.json': (data) => JSON.parse(data),
   '.yml': (data) => yaml.safeLoad(data),
+  '.ini': (data) => ini.parse(data),
 };
 
 const parse = (filePath) => {

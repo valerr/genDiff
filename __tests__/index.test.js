@@ -1,8 +1,7 @@
+import path from 'path';
 import genDiff from '../src';
 
-const beforeJSON = `${__dirname}/__fixtures__/before.json`;
-const afterJSON = `${__dirname}/__fixtures__/after.json`;
-const resultJSON = `{
+const result = `{
     host: hexlet.io
   - timeout: 50
   + timeout: 20
@@ -11,21 +10,16 @@ const resultJSON = `{
   + verbose: true
 }`;
 
-const beforeYML = `${__dirname}/__fixtures__/before.yml`;
-const afterYML = `${__dirname}/__fixtures__/after.yml`;
-const resultYML = `{
-    host: hexlet.io
-  - timeout: 50
-  + timeout: 20
-  - proxy: 123.234.53.22
-  - follow: false
-  + verbose: true
-}`;
+const table = [
+  ['before.json', 'after.json', result],
+  ['before.yml', 'after.yml', result],
+  ['before.ini', 'after.ini', result],
+];
 
-test('compare flat JSON', () => {
-  expect(genDiff(beforeJSON, afterJSON)).toEqual(resultJSON);
-});
-
-test('compare flat YML', () => {
-  expect(genDiff(beforeYML, afterYML)).toEqual(resultYML);
-});
+test.each(table)(
+  'compare 2 files(%s, %s)', (beforeType, afterType, expected) => {
+    const before = path.join(`${__dirname}/__fixtures__/`, beforeType);
+    const after = path.join(`${__dirname}/__fixtures__/`, afterType);
+    expect(genDiff(before, after)).toEqual(expected);
+  },
+);
