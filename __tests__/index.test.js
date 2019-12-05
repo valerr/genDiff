@@ -10,10 +10,8 @@ const resultFlat = `{
   + verbose: true
 }`;
 
-const resultNested = `
-{
+const resultNested = `{
     common: {
-      + follow: false
         setting1: Value 1
       - setting2: 200
       - setting3: true
@@ -24,14 +22,15 @@ const resultNested = `
             key: value
           + ops: vops
         }
+      + follow: false
       + setting4: blah blah
       + setting5: {
             key5: value5
         }
     }
     group1: {
-      + baz: bars
       - baz: bas
+      + baz: bars
         foo: bar
       - nest: {
             key: value
@@ -51,6 +50,8 @@ const table = [
   ['before.yml', 'after.yml', resultFlat],
   ['before.ini', 'after.ini', resultFlat],
   ['beforeNested.json', 'afterNested.json', resultNested],
+  ['beforeNested.ini', 'afterNested.ini', resultNested],
+  ['beforeNested.yml', 'afterNested.yml', resultNested],
 ];
 
 test.each(table)(
