@@ -35,4 +35,8 @@
 
 <a href="https://asciinema.org/a/vfntJmtvEztK6mxUhStyi3QHP" target="_blank"><img src="https://asciinema.org/a/vfntJmtvEztK6mxUhStyi3QHP.svg" /></a>
 
+* JSON
+
+<a href="https://asciinema.org/a/srCe9s6dylGtHyKGzl7561Zgr" target="_blank"><img src="https://asciinema.org/a/srCe9s6dylGtHyKGzl7561Zgr.svg" /></a>
+
 

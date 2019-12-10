@@ -1,14 +1,17 @@
 import renderTree from '../renderTree';
 import renderPlain from './renderPlain';
 
-const renderersForFormats = {
-  plain: renderPlain,
-  tree: renderTree,
+const render = (type) => {
+  switch (type) {
+    case 'plain':
+      return renderPlain;
+    case 'tree':
+      return renderTree;
+    case 'json':
+      return (ast) => JSON.stringify(ast).concat('\n');
+    default:
+      return renderTree;
+  }
 };
 
-const chooseFormat = (ast, format) => {
-  const render = renderersForFormats[format];
-  return render(ast);
-};
-
-export default chooseFormat;
+export default render;

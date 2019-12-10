@@ -6,18 +6,21 @@ const stringify = (value) => {
 };
 
 const stringsForTypes = {
-  nested: ({ name, children }, path, func) => func(children, `${path}${name}.`),
+  nested: (node, path, func) => func(node.children, path),
   unchanged: () => [],
-  changed: ({ name, before, after }, path) => `Property '${path}${name}' was updated. From '${stringify(before)}' to '${stringify(after)}'`,
-  added: ({ name, after }, path) => `Property '${path}${name}' was added with value: '${stringify(after)}'`,
-  deleted: ({ name }, path) => `Property '${path}${name}' was removed`,
+  changed: (node, path) => `Property '${path}' was updated. From '${stringify(node.before)}' to '${stringify(node.after)}'`,
+  added: (node, path) => `Property '${path}' was added with value: '${stringify(node.after)}'`,
+  deleted: (node, path) => `Property '${path}' was removed`,
 };
 
-const renderPlain = (ast, path = '') => {
-  const formatted = ast.map((node) => {
-    const getString = stringsForTypes[node.state];
-    return getString(node, path, renderPlain);
-  });
+const renderPlain = (ast, path) => {
+  const formatted = ast
+    .reduce((acc, node) => {
+      const { name, state } = node;
+      const newPath = path ? `${path}.${name}` : `${name}`;
+      const getString = stringsForTypes[state];
+      return [...acc, getString(node, newPath, renderPlain)];
+    }, []);
   return `${_.flatten(formatted).join('\n')}`;
 };
 
