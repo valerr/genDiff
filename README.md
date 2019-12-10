@@ -29,4 +29,10 @@
 
 <a href="https://asciinema.org/a/10jzT9JGgczbOBWHNpypoeR0D" target="_blank"><img src="https://asciinema.org/a/10jzT9JGgczbOBWHNpypoeR0D.svg" /></a>
 
+# Choose output format
+
+* Plain text
+
+<a href="https://asciinema.org/a/vfntJmtvEztK6mxUhStyi3QHP" target="_blank"><img src="https://asciinema.org/a/vfntJmtvEztK6mxUhStyi3QHP.svg" /></a>
+
 

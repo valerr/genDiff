@@ -14,7 +14,7 @@ test.each(table)(
   'compare 2 files(%s, %s)', (type, format) => {
     const before = `${__dirname}/__fixtures__/beforeNested.${type}`;
     const after = `${__dirname}/__fixtures__/afterNested.${type}`;
-    const result = fs.readFileSync(`${__dirname}/__fixtures__/${format}.txt`, 'utf-8');
+    const result = fs.readFileSync(`${__dirname}/__fixtures__/${format}.txt`, 'utf8');
     // console.log(genDiff(before, after, format));
     expect(genDiff(before, after, format)).toEqual(result);
   },

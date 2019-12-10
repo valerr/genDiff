@@ -21,4 +21,4 @@ const renderPlain = (ast, path = '') => {
   return `${_.flatten(formatted).join('\n')}`;
 };
 
-export default renderPlain;
+export default (ast) => renderPlain(ast).concat('\n');
