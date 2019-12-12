@@ -1,4 +1,4 @@
-import renderTree from '../renderTree';
+import renderTree from './renderTree';
 import renderPlain from './renderPlain';
 
 const render = (type) => {
