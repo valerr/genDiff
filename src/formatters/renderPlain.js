@@ -13,14 +13,13 @@ const stringsForTypes = {
   deleted: (node, path) => `Property '${path}' was removed`,
 };
 
-const renderPlain = (ast, path) => {
+const renderPlain = (ast, path = '') => {
   const formatted = ast
-    .reduce((acc, node) => {
-      const { name, state } = node;
-      const newPath = path ? `${path}.${name}` : `${name}`;
-      const getString = stringsForTypes[state];
-      return [...acc, getString(node, newPath, renderPlain)];
-    }, []);
+    .map((node) => {
+      const newPath = path ? `${path}.${node.name}` : `${node.name}`;
+      const getString = stringsForTypes[node.state];
+      return getString(node, newPath, renderPlain);
+    });
   return `${_.flatten(formatted).join('\n')}`;
 };
 

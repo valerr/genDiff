@@ -3,14 +3,14 @@ import _ from 'lodash';
 const makeIndent = (depth) => ' '.repeat(2 * depth);
 
 const stringify = (value, depth) => {
+  if (!_.isObject(value)) {
+    return value;
+  }
   const untab = makeIndent(depth - 1);
   const tab = makeIndent(depth);
-  if (_.isObject(value)) {
-    const str = Object.keys(value).map((key) => `${tab}  ${key}: ${value[key]}`);
-    const result = [str, `${untab}}`].join('\n');
-    return `{\n${result}`;
-  }
-  return value;
+  const str = Object.keys(value).map((key) => `${tab}  ${key}: ${value[key]}`);
+  const result = [str, `${untab}}`].join('\n');
+  return `{\n${result}`;
 };
 
 const treeActions = {

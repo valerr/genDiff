@@ -1,5 +1,6 @@
 import renderTree from './renderTree';
 import renderPlain from './renderPlain';
+import renderJson from './renderJson';
 
 const render = (type) => {
   switch (type) {
@@ -8,7 +9,7 @@ const render = (type) => {
     case 'tree':
       return renderTree;
     case 'json':
-      return (ast) => JSON.stringify(ast).concat('\n');
+      return renderJson;
     default:
       return renderTree;
   }
