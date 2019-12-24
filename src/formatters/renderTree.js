@@ -35,4 +35,4 @@ const render = (ast, depth = 1) => {
   return `{\n${_.flatten(formatted).join('\n')}\n${untab}}`;
 };
 
-export default (ast) => render(ast).concat('\n');
+export default render;

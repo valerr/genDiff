@@ -1,1 +1,1 @@
-export default (ast) => JSON.stringify(ast).concat('\n');
+export default JSON.stringify;
