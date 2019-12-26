@@ -20,7 +20,7 @@ const renderPlain = (ast, path = '') => {
       const getString = stringsForTypes[node.state];
       return getString(node, newPath, renderPlain);
     });
-  return `${_.flatten(formatted).join('\n')}`;
+  return _.flatten(formatted).join('\n');
 };
 
 export default renderPlain;
